@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <style>
+        [v-cloak] {
+            display: none
+        }
+    </style>
+</head>
+
+<body>
+    <!-- 
+        v-cloak:指令：等到生成HTML渲染之后在显示。
+        需要配合[v-cloak] {display:none}使用，默认先隐藏为渲染的界面
+     -->
+    <div id="app">
+        <p v-cloak>当前数据：{{name}}</p>
+    </div>
+
+    <script src="../js/vue.js"></script>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                name: 'wja'
+            }
+        });
+    </script>
+</body>
+
+</html>

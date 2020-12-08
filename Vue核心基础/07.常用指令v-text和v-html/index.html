@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        v-text:指令：就相当于之前学习的 innerText
+        v-html:指令：就相当于之前学习的 innerHtml
+
+     -->
+    <div id="app">
+        <!-- <p v-text="name">++++++++++++</p>
+        <p v-text="msg">++++++++++++</p> -->
+        <p v-html="name">++++++++++++</p>
+        <p v-html="msg">++++++++++++</p>
+    </div>
+
+
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                name: 'wja',
+                msg: '<span>我是span</span>'
+            }
+        });
+    </script>
+</body>
+
+</html>

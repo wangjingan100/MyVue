@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+       v-if:指令：里面可以写表达式，满足就渲染元素，不满足就不渲染
+     -->
+    <div id="app">
+        <!-- <p v-if="age >= 18">成年人</p>
+        <p v-if="age < 18">未成年人</p> -->
+        <!-- <p v-if="age >= 18">成年人</p>
+        <p v-else>未成年人</p> -->
+        <p v-if="score >= 80">优秀</p>
+        <p v-else-if="score >= 60">良好</p>
+        <p v-else>差</p>
+
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                age:18,
+                score: 100
+            }
+        });
+    </script>
+</body>
+
+</html>
