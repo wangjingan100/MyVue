@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+    -->
+    <div id="app">
+        <!-- <input type="text" @keyup="myFn"> -->
+        <!-- <input type="text" @keyup.enter="myFn"> -->
+        <!-- <input type="text" @keyup.113="myFn"> -->
+        <input type="text" @keyup.f2="myFn">
+    </div>
+    <script>
+        Vue.config.keyCodes.f2 = 113;
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods:{
+                myFn(){
+                    alert(23456789)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

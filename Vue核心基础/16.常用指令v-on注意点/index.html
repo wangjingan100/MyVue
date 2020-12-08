@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        1 @click="myFn 中的函数可以添加小括号也可以不添加
+        2 如果有参数 就需要添加小括号了
+        3 可以在参数中通过$event 传递原生的事件
+     -->
+    <div id="app">
+        <button @click="myFn('lnj',33,$event)">我是按钮</button>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods:{
+                myFn(name,age,e){
+                    // alert(23456789)
+                    console.log(name,age,e);
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

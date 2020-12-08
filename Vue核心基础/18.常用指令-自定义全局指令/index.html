@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+    -->
+    <div id="app">
+        <p v-color>我是内容</p>
+        <input type="text" v-focus>
+    </div>
+    <script>
+        /* 
+        在Vue中自定义一个全局指令
+        directive 接受两个参数 
+        第一个参数是 绑定的类名 
+        第二个参数是一个对象
+         */
+        Vue.directive('color',{
+            // bind 是在元素绑定时候发生
+            bind:function(el){
+                // el 是元素本身
+                el.style.color='red';
+            }
+        });
+        Vue.directive('focus',{
+            // inserted是在bing之后插入到界面时候发生
+            inserted:function(el){
+                el.focus();
+            }
+        })
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods:{
+                myFn(){
+                    alert(23456789)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

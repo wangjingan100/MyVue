@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+        <p>{{age}}</p>
+        <p>{{msg}}</p>
+        <p>{{msg.split("").reverse().join('')}}</p>
+        <p>{{msg2}}</p>
+    </div>
+    <script>
+
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                name:'wja',
+                age:23,
+                msg:'abcdefg'
+            },
+            methods:{
+                myFn(){
+                    alert(23456789)
+                }
+            },
+            //这样写就是局部的了
+            directives:{
+                'color':{
+                    bind:function(el,obj){
+                        el.style.color=obj.value;
+                    }
+                }
+            },
+            computed:{
+                msg2:function(){
+                    return "abcdefg".split("").reverse().join("");
+                }
+            }
+        });
+
+    </script>
+</body>
+
+</html>

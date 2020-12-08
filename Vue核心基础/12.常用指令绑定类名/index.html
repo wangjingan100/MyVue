@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <style>
+        .size{
+            font-size: 100px;
+        }
+        .color{
+            color:red;
+        }
+        .active{
+            background: skyblue;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+    -->
+    <div id="app">
+        <!-- <p class="size color active">我是段落</p> -->
+        <!-- <p :class="['size','active','color']">我是段落</p> -->
+        <!-- <p :class="['size','active',flag? 'color':'']">我是段落</p> -->
+        <!-- <p :class="['size','active',{'color':false}]">我是段落</p> -->
+        <p :class="obj">我是段落</p>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                name: 'wja34',
+                age: 23,
+                flag:true,
+                obj:{
+                    'size':true,
+                    'active':false,
+                    'color':true
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

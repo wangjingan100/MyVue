@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+    -->
+    <div id="app">
+        <!-- <p v-color="'red'">我是内容</p> -->
+        <p v-color="currentColor">我是内容</p>
+    </div>
+    <script>
+        Vue.directive('color',{
+            bind:function(el,obj){
+                // el.style.color='red';
+                el.style.color=obj.value;
+            }
+        });
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                currentColor:'blue'
+            },
+            methods:{
+                myFn(){
+                    alert(23456789)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

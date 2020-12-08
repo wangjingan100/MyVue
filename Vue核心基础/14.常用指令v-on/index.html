@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+    -->
+    <div id="app">
+        <!-- <button onclick="alert(123)">我是按钮</button> -->
+        <!-- <button v-on:click="myFn">我是按钮</button> -->
+        <button @click="myFn">我是按钮</button>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                
+            },
+            methods:{
+                myFn(){
+                    alert(23456789)
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
