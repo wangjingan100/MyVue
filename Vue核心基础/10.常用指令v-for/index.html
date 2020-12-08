@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+       v-for:指令：和js中的for in 循环很象。
+       特点：可以遍历 数组、字符、数字、对象
+     -->
+    <div id="app">
+        <ul>
+            <!-- <li v-for="(value , index) in list">{{index}}---{{value}}</li> -->
+            <!-- <li v-for="(value , index) in 'abcdefg'">{{index}}---{{value}}</li> -->
+            <!-- <li v-for="(value , index) in 6">{{index}}---{{value}}</li> -->
+            <li v-for="(value , key) in obj">{{key}}---{{value}}</li>
+        </ul>
+    </div>
+    <script>
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                list: ['张三', '李四', '王五', '赵六'],
+                obj:{
+                    name:"wja",
+                    age:23,
+                    gender:"man",
+                    class:"直播与"
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
