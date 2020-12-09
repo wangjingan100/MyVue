@@ -9,15 +9,21 @@
 </head>
 
 <body>
+    <!-- 
+        方法和属性的区别：
+        1.方法每次调用都会执行
+        2.属性是只要返回的结果不变，会把结果缓存起来，能够提高性能
+     -->
     <div id="app">
-        <p>{{name}}</p>
-        <p>{{age}}</p>
-        <p>{{msg}}</p>
-        <p>{{msg.split("").reverse().join('')}}</p>
+        <!-- <p>{{msg1()}}</p>
+        <p>{{msg1()}}</p>
+        <p>{{msg1()}}</p> -->
+        <p>{{msg2}}</p>
+        <p>{{msg2}}</p>
         <p>{{msg2}}</p>
     </div>
     <script>
-
+        
         let vue = new Vue({
             el: '#app',
             data: {
@@ -26,6 +32,10 @@
                 msg: 'abcdefg'
             },
             methods: {
+                msg1() {
+                    console.log('msg1被执行了');
+                    return "abcdefg".split("").reverse().join("");
+                },
                 myFn() {
                     alert(23456789)
                 }
@@ -40,6 +50,7 @@
             },
             computed: {
                 msg2: function () {
+                    console.log('msg2被执行了');
                     return "abcdefg".split("").reverse().join("");
                 }
             }
