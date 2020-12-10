@@ -1,0 +1,109 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+        .v-enter {
+            opacity: 0;
+        }
+
+        .v-enter-to {
+            opacity: 1;
+        }
+
+        .v-enter-active {
+            transition: all 3s;
+        }
+
+        .v-leave {
+            opacity: 1;
+        }
+
+        .v-leave-to {
+            opacity: 0;
+        }
+
+        .v-leave-active {
+            transition: all 3s;
+        }
+
+        /*  .fade-enter-active, .fade-leave-active {
+            transition: opacity 2.5s;
+        }
+        .fade-enter, .fade-leave-to  {
+            opacity: 0;
+        } 
+
+        .v-enter,
+        .v-leave-to {
+            opacity: 0;
+        }
+
+        .v-enter-active,
+        .v-leave-to {
+            transition: all 4s;
+        }*/
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+
+        <form>
+            <input type="text" v-model="name">
+            <input type="submit" @click.prevent="add">
+        </form>
+        <!-- <ul> -->
+            <transition-group appear tag="ul">
+                <li v-for="(person , index ) in persons" :key="person.id" @click="del(index)">
+                    <input type="checkbox">
+                    <span>{{index}} --- {{person.name}}</span>
+                </li>
+            </transition-group>
+        <!-- </ul> -->
+    </div>
+    <script>
+
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                persons: [
+                    { name: 'zs', id: 1 },
+                    { name: 'ls', id: 2 },
+                    { name: 'ww', id: 3 },
+                ],
+                name: '',
+                id:3
+            },
+            methods: {
+                add() {
+                    this.id++;
+                    this.persons.unshift({ name: this.name, id: this.id});
+                    this.name = "";
+                },
+                del(index){
+                    this.persons.splice(index,1);
+                }
+            },
+
+        });
+
+    </script>
+</body>
+
+</html>

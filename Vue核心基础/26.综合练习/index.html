@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <style>
+        *{
+            margin: 0;
+            padding: 0;
+        }
+        #app{
+            width: 800px;
+            margin: 50px auto;
+            background: skyblue;
+        }
+        table{
+            background: #000;
+        }
+        tr{
+            background: #fff;
+        }
+        form{
+            display: flex;
+            justify-content: space-between;
+        }
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    
+    <div id="app">
+        <form v-show="isShow">
+            <input type="text" placeholder="请输入编号" v-model="person.id">
+            <input type="text" placeholder="请输入姓名" v-model="person.name">
+            <input type="text" placeholder="请输入成绩" v-model="person.score">
+            <input type="submit" value="添加" @click.prevent ="add">
+            <input type="submit" value="查询" @click.prevent="query">
+        </form>
+        <table>
+            <tr>
+                <th>Id</th>
+                <th>姓名</th>
+                <th>成绩</th>
+                <th>时间</th>
+                <th>操作</th>
+            </tr>
+            <tr v-for="(person,index) in persons">
+                <td><input type="text" :disabled="isDisable" :value="person.id"/></td>
+                <td><input type="text" :disabled="isDisable" :value="person.name"/></td>
+                <td><input type="text" :disabled="isDisable" :value="person.score"/></td>
+                <td><input type="text" disabled :value="person.time | formartDate"/></td>
+                <td>
+                    <a href="#" @click.prevent="edit">编辑</a>
+                    <a href="#" @click.prevent="del(index)">删除</a><br>
+                    <a href="#" @click.prevent="toggle">更多操作</a>
+                </td>
+            </tr>
+        </table>
+    </div>
+    <script>
+        Vue.filter('formartDate',function(value,formartStr){
+            var date = new Date(value);
+            let year = date.getFullYear();
+            let month = date.getMonth()+1+"";
+            let day = date.getDay()+"";
+            let hour = date.getHours()+"";
+            let minute = date.getMinutes()+"";
+            let second = date.getSeconds()+"";
+            if(formartStr&&formartStr==='yyyy-MM-dd'){
+                return `${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')}`;
+            }
+            return `${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')} ${hour.padStart(2,'0')}:${minute.padStart(2,'0')}:${second.padStart(2,'0')}`;            
+        });
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                isDisable:true,
+                isShow:false,
+                persons:[{
+                    id:1,
+                    name:'zs',
+                    score:'99',
+                    time:Date.now()
+                },{
+                    id:2,
+                    name:'ls',
+                    score:'88',
+                    time:Date.now()
+                },{
+                    id:3,
+                    name:'ww',
+                    score:'77',
+                    time:Date.now()
+                }],
+                person:{
+                    id:"",
+                    name:"",
+                    score:""
+                }
+
+            },
+            methods: {
+                edit(){
+                    this.isDisable=!this.isDisable
+                },
+                toggle(){
+                    this.isShow=!this.isShow
+                },
+                del(index){
+                    this.persons.splice(index,1);
+                },
+                add(){
+                    this.person.time=Date.now();
+                    this.persons.push(this.person);
+                    this.person={
+                        id:"",
+                        name:"",
+                        score:""
+                    }
+                },
+                query(){
+                    let newPersons=this.persons.filter((person)=>{
+                        if(this.person.score==person.score){
+                            return true;
+                        }
+                        return false;
+                    });
+                    console.log(newPersons);
+                    this.persons=newPersons;
+                }
+            },
+            
+        });
+
+    </script>
+</body>
+
+</html>

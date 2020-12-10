@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{name}}</p>
+        <grandfather></grandfather>
+    </div>
+
+    <template id="grandfather">
+        <div>
+            <p>爷爷组件</p>
+            <p>{{name}}</p>
+            <button @click="say">爷爷中的按钮</button>
+            <father :gfname="name" @gfsay="say"></father>
+        </div>
+    </template>
+    <template id="father">
+        <div>
+            <p>父亲组件</p>
+            <p>{{gfname}}</p>
+            <button @click="fsay">父亲中的按钮</button>
+            <son :fname="gfname" @sonsay="fsay"></son>
+        </div>
+    </template>
+    <template id="son">
+        <div>
+            <p>儿子组件</p>
+            <p>{{fname}}</p>
+            <button @click="sonsssay">按钮</button>
+        </div>
+    </template>
+
+    <script>
+        Vue.component("grandfather", {
+            template: '#grandfather',
+            data: function () {
+                return {
+                    name: 'lnj'
+                }
+            },
+            methods:{
+                say(){
+                    console.log('爷爷中的方法');
+                }
+            },
+            components: {
+                "father": {
+                    template: '#father',
+                    props:["gfname"],
+                    methods:{
+                        fsay(){
+                            this.$emit('gfsay')
+                        }
+                    },
+                    components: {
+                        "son": {
+                            template: '#son',
+                            props:['fname'],
+                            methods:{
+                                sonsssay(){
+                                    this.$emit("sonsay")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        })
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                name: 'wja'
+            }
+        });
+    </script>
+</body>
+
+</html>

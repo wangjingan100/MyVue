@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <style>
+    </style>
+    <!-- 1 引入vue -->
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <father></father>
+    </div>
+    <template id="father">
+        <div>
+            <p>我是父组件</p>
+            <p>{{name}}</p>
+           <button @click="say">我是父组件按钮</button>
+           <son @parent-say="say" :parent-name="name"></son>
+        </div>
+    </template>
+    <template id="son">
+        <div>
+            <p>我是子组件</p>
+            <p>{{parentName}}</p>
+            <button @click="sonFn">我是子组件按钮</button>
+        </div>
+    </template>
+    <script>
+        
+        // 2 创建vue实例对象
+        let vue = new Vue({
+            // 3 告诉vue 的实例对象，将来要控制界面上的那个区域
+            el: '#app',
+            // 4 告诉vue 的实例对象，被控制的数据是什么
+            data: {
+                isShow: true,
+                name: 'home'
+            },
+            methods: {
+                toggle() {
+                    this.isShow = !this.isShow
+                    this.name = this.name === 'home' ? 'photo' : 'home'
+                }
+            },
+            computed: {},
+            components: {
+                "father": {
+                    template: '#father',
+                    data:function(){
+                        return {
+                            name:'lnj',
+                            age:33
+                        }
+                    },
+                    methods:{
+                        say(data){
+                            // alert('wwww.it666.com')
+                            console.log(data);
+                        }
+                    },
+                    components: {
+                        "son": {
+                            template: '#son',
+                            props:["parentName"],
+                            methods:{
+                                sonFn(){
+                                    this.$emit('parent-say',"直播与")
+                                }
+                            }
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+        .a{
+            opacity: 0;
+        }
+        .b{
+            opacity: 1;
+            margin-left: 500px;
+        }
+        .c{
+            transition: all 3s;
+        }
+        .v-leave{
+            opacity: 1;
+        }
+        .v-leave-to{
+            opacity: 0;
+        }
+        .v-leave-active{
+            transition: all 3s;
+        }
+
+        /* .one-enter{
+            opacity: 0;
+        }
+        .one-enter-to{
+            opacity: 1;
+            margin-top: 500px;
+        }
+        .one-enter-active{
+            transition: all 3s;
+        }
+        .one-leave{
+            opacity: 1;
+        }
+        .one-leave-to{
+            opacity: 0;
+        }
+        .one-leave-active{
+            transition: all 3s;
+        } */
+        /*  .fade-enter-active, .fade-leave-active {
+            transition: opacity 2.5s;
+        }
+        .fade-enter, .fade-leave-to  {
+            opacity: 0;
+        }
+
+        .v-enter,.v-leave-to{
+            opacity: 0;
+        }
+        .v-enter-active,.v-leave-to{
+            transition: all 1s;
+        } */
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        注意点：1 一个transition中只能有一个元素，多了无效
+        2.多个执行动画的元素要执行不同的动画 需要指定动画查找的样式
+        3.默认情况下页面刚加载好是没有动画效果的，想有就需要添加 appear 属性
+     -->
+    <div id="app">
+        <button @click="toggle">显示&隐藏按钮</button>
+        
+        <transition appear enter-class="a" enter-active-class="c" enter-to-class="b">
+            <div class="box" v-show="isShow"></div>
+        </transition>
+
+    </div>
+    <script>
+
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                isShow: true,
+            },
+            methods: {
+                toggle() {
+                    this.isShow = !this.isShow
+                }
+            },
+
+        });
+
+    </script>
+</body>
+
+</html>

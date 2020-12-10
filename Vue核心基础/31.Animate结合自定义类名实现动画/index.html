@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <link href="https://cdn.jsdelivr.net/npm/animate.css@3.5.1" rel="stylesheet" type="text/css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        .box {
+            width: 200px;
+            height: 200px;
+            background: red;
+        }
+
+    </style>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        注意点：1 一个transition中只能有一个元素，多了无效
+        2.多个执行动画的元素要执行不同的动画 需要指定动画查找的样式
+        3.默认情况下页面刚加载好是没有动画效果的，想有就需要添加 appear 属性
+     -->
+    <div id="app">
+        <button @click="toggle">显示&隐藏按钮</button>
+        
+        <transition appear enter-class="" enter-active-class="animated bounceInRight" enter-to-class="">
+            <div class="box" v-show="isShow"></div>
+        </transition>
+
+    </div>
+
+    <script>
+
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                isShow: true,
+            },
+            methods: {
+                toggle() {
+                    this.isShow = !this.isShow
+                }
+            },
+
+        });
+
+    </script>
+</body>
+
+</html>

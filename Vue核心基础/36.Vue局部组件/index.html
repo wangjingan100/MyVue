@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <!-- 1 引入vue -->
+    <script src="../js/vue.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- 5 使用vue数据 -->
+        <p>{{name}}</p>
+        <abc></abc>
+    </div>
+    <div id="app2">
+        <!-- 5 使用vue数据 -->
+        <p>{{name}}</p>
+        <abc></abc>
+    </div>
+    <template id="info">
+        <div>
+            <img src="../images/fm.jpg" alt="">
+            <p>我是描述信息555</p>
+        </div>
+    </template>
+    <script>
+        // Vue.component("abc",{
+        //     template:'#info'
+        // })
+
+        // 2 创建vue实例对象
+        let vue = new Vue({
+            // 3 告诉vue 的实例对象，将来要控制界面上的那个区域
+            el:'#app',
+            // 4 告诉vue 的实例对象，被控制的数据是什么
+            data:{
+                name:'wja'
+            },
+            methods:{},
+            computed:{},
+            components:{
+            }
+        });
+        let vue2 = new Vue({
+            // 3 告诉vue 的实例对象，将来要控制界面上的那个区域
+            el:'#app2',
+            // 4 告诉vue 的实例对象，被控制的数据是什么
+            data:{
+                name:'wja'
+            },
+            methods:{},
+            computed:{},
+            components:{
+                "abc":{
+                    template:'#info'
+                }
+            }
+        });
+    </script>
+</body>
+</html>
