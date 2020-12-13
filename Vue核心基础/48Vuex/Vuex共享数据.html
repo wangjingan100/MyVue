@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue基础</title>
+  <script src="../js/vue.js"></script>
+  <script src="../js/vuex.js"></script>
+</head>
+<body>
+  <div id="app">
+    <grandfather></grandfather>
+  </div>
+  <template id="grandfather">
+    <div>
+      <p>{{this.$store.state.msg}}</p>
+      <father></father>
+    </div>
+  </template>
+  <template id="father">
+    <div>
+      <p>{{this.$store.state.msg}}</p>
+      <son></son>
+    </div>
+  </template>
+  <template id="son">
+    <div>
+      <p>{{this.$store.state.msg}}</p>
+    </div>
+  </template>
+  <script>
+    const store = new Vuex.Store({
+      state:{
+        msg:"wja数据"
+      }
+    });
+    Vue.component("grandfather",{
+      template:'#grandfather',
+      store:store,
+      components:{
+        "father":{
+          template:'#father',
+          components:{
+            "son":{
+              template:'#son'
+            }
+          }
+        }
+      }
+    })
+    let vue = new Vue({
+      beforeCreate:function(){},
+      created:function(){},
+      beforeMount:function(){},
+      mounted:function(){},
+      beforeUpdate:function(){},
+      updated:function(){},
+      el:"#app",
+      watch:{},
+      data:{},
+      methods:{},
+      computed:{},
+      components:{}
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <div id="app">
+        <p>{{time | dateFormart("yyyy-MM-dd")}}</p>
+    </div>
+    <script>
+        Vue.filter('dateFormart',function(value,fmStr){
+            console.log(fmStr);
+            let date = new Date(value);
+            let year = date.getFullYear();
+            let month=date.getMonth()+1+"";
+            let day = date.getDay()+"";
+            let hour = date.getHours()+"";
+            let minute = date.getMinutes()+"";
+            let second = date.getSeconds()+"";
+            if(fmStr&&fmStr==="yyyy-MM-dd"){
+                return `${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')}`;
+            }
+            return `${year}-${month.padStart(2,'0')}-${day.padStart(2,'0')} ${hour.padStart(2,'0')}:${minute.padStart(2,'0')}:${second.padStart(2,'0')}`;
+        })
+        let vue1 = new Vue({
+            el: '#app',
+            data: {
+                time:Date.now()
+            },
+            methods: {
+
+            },
+            directives: {
+
+            },
+            computed: {
+
+            },
+            // 局部过滤器 注意 是 filters
+            filters: {
+                "formartStr": function (value) {
+                    value = value.replace(/学院/g, "大学");
+                    console.log(value);
+                    return value;
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>

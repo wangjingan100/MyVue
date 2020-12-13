@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue基础</title>
+  <script src="../js/vue.js"></script>
+  <script src="../js/vuex.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <father></father> -->
+    <!-- {{formart}}
+    {{formart}}
+    {{formart}} -->
+    {{this.$store.getters.formart}}
+    {{this.$store.getters.formart}}
+    {{this.$store.getters.formart}}
+  </div>
+
+  <script>
+    const store = new Vuex.Store({
+      state: {
+        count: 0,
+        message:"直播鱼"
+      },
+      mutations:{
+        mAdd(state){
+          state.count=state.count+1;
+        },mSub(state){
+          state.count=state.count-1;
+        }
+      },
+      getters:{
+        formart(state){
+          console.log("getters方法被执行了");
+          return state.message+"www.it666.com"
+        }
+      }
+    })
+    
+    let vue = new Vue({
+      beforeCreate: function () { },
+      created: function () { },
+      beforeMount: function () { },
+      mounted: function () { },
+      beforeUpdate: function () { },
+      updated: function () { },
+      el: "#app",
+      watch: {},
+      data: {
+        msg:"wja1234"
+      },
+      store:store,
+      methods: {},
+      computed: {
+        formart:function(){
+          console.log("计算属性被执行了");
+          return this.msg+"www.baidu.com"
+        }
+      },
+      components: {}
+    });
+  </script>
+</body>
+
+</html>

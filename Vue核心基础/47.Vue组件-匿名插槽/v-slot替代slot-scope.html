@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue基础</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <father></father>
+  </div>
+  <template id="father">
+    <div>
+      <son>
+        <!-- <template  slot-scope="abc">
+          <div>我是父节点中追加的内容33{{abc.names}}</div>
+          <div>我是父节点中追加的内容34</div>
+          <li v-for="(name,index) in abc.names">{{name}}</li>
+        </template> -->
+        <!-- <template  v-slot:default="abc">
+          <div>我是父节点中追加的内容33{{abc.names}}</div>
+          <li v-for="(name,index) in abc.names">{{name}}</li>
+        </template> -->
+        <!-- <template  #default="abc">
+          <div>我是父节点中追加的内容3233{{abc.names}}</div>
+          <li v-for="(name,index) in abc.names">{{name}}</li>
+        </template> -->
+        <template  #one="abc">
+          <div>我是父节点中追加的内容33{{abc.names}}</div>
+          <li v-for="(name,index) in abc.names">{{name}}</li>
+        </template>
+      </son>
+    </div>
+  </template>
+  <template id="son">
+    <div>
+      <div>我是头部{{names}}</div>
+      <slot name="one" v-bind:names="names">我是slot中的默认值{{names}}</slot>
+      <slot name="two">我是slot中的默认值</slot>
+      <div>我是尾部</div>
+    </div>
+  </template>
+  <script>
+      Vue.component("father",{
+        template:"#father",
+        components:{
+          "son":{
+            template:"#son",
+            data:function(){
+              return {
+                names:['zs','li','ww','zl']
+              }
+            }
+          }
+        }
+      })
+    let vue = new Vue({
+      beforeCreate:function(){},
+      created:function(){},
+      beforeMount:function(){},
+      mounted:function(){},
+      beforeUpdate:function(){},
+      updated:function(){},
+      el:"#app",
+      watch:{},
+      data:{},
+      methods:{},
+      computed:{},
+      components:{}
+    });
+  </script>
+</body>
+</html>

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Vue基础</title>
+  <script src="../js/vue.js"></script>
+</head>
+<body>
+  <div id="app">
+    <father></father>
+  </div>
+  <template id="father">
+    <div>
+      <son>
+        <!-- <div slot="one">我是父节点中追加的内容1</div>
+        <div slot="one">我是父节点中追加的内容11</div>
+        <div slot="two">我是父节点中追加的内容2</div>
+        <div slot="two">我是父节点中追加的内容22</div> -->
+        <!-- <template v-slot:one>
+          <div>我是父节点中追加的内容1</div>
+          <div>我是父节点中追加的内容11</div>
+        </template>
+        <template v-slot:two>
+          <div>我是父节点中追加的内容2</div>
+          <div>我是父节点中追加的内容22</div>
+        </template> -->
+        <template #one>
+          <div>我是父节点中追加的内容33</div>
+          <div>我是父节点中追加的内容34</div>
+        </template>
+        <template #two>
+          <div>我是父节点中追加的内容2</div>
+          <div>我是父节点中追加的内容22</div>
+        </template>
+      </son>
+    </div>
+  </template>
+  <template id="son">
+    <div>
+      <div>我是头部</div>
+      <slot name="one">我是slot中的默认值</slot>
+      <slot name="two">我是slot中的默认值</slot>
+      <div>我是尾部</div>
+    </div>
+  </template>
+  <script>
+      Vue.component("father",{
+        template:"#father",
+        components:{
+          "son":{
+            template:"#son"
+          }
+        }
+      })
+    let vue = new Vue({
+      beforeCreate:function(){},
+      created:function(){},
+      beforeMount:function(){},
+      mounted:function(){},
+      beforeUpdate:function(){},
+      updated:function(){},
+      el:"#app",
+      watch:{},
+      data:{},
+      methods:{},
+      computed:{},
+      components:{}
+    });
+  </script>
+</body>
+</html>

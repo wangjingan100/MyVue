@@ -1,0 +1,69 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <!-- <p>{{msg}}</p> -->
+    <button @click="myFn">切换</button>
+    <p ref="myP">{{msg}}</p>
+    <one ref="myOne"></one>
+  </div>
+  <template id="one">
+    <div>
+      <p>{{msg}}</p>
+    </div>
+  </template>
+  <script>
+    Vue.component("one", {
+      template: '#one',
+      data: function () {
+        return {
+          msg: '组件中的数据'
+        }
+      },
+      methods: {
+        say() {
+          console.log('say fun');
+        }
+      }, 
+      beforeDestroy: function () { },
+      destroyed: function () {},
+    })
+    let vue = new Vue({
+      beforeCreate: function () { },
+      created: function () {},
+      beforeMount: function () { },
+      mounted: function () {},
+      beforeUpdate: function () { },
+      updated: function () {},
+      el: '#app',
+      data: {
+        msg: 'zhiboyu',
+        isShow: true
+      },
+      methods: {
+        say() {
+          console.log('说话了');
+        },
+        change() {
+          this.isShow = !this.isShow;
+        },
+        myFn(){
+          console.log(this.$refs);
+          console.log(this.$refs.myOne);
+          console.log(this.$refs.myOne.say);
+          console.log(this.$refs.myOne.msg);
+        }
+      }
+    })
+  </script>
+</body>
+
+</html>

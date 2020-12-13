@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <script src="../js/vue.js"></script>
+</head>
+
+<body>
+  <div id="app">
+    <one></one>
+  </div>
+  <template id="one">
+    <div>
+      <p>{{msg}}</p>
+    </div>
+  </template>
+  <script>
+    Vue.component("one", {
+      template: '#one',
+      data: function () {
+        return {
+          msg: '组件中的数据'
+        }
+      },
+      methods: {
+        say() {
+          console.log('say fun');
+        }
+      },
+    })
+    let vue = new Vue({
+      el: '#app',
+      render:function(createElement){
+        let html = createElement('one')
+        return html;
+      },
+      data: {
+        msg: 'zhiboyu',
+        isShow: true
+      },
+      methods: {
+
+      }
+    })
+  </script>
+</body>
+
+</html>

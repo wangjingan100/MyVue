@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue基本模板</title>
+    <script src="../js/vue.js"></script>
+</head>
+
+<body>
+    <!-- 
+        
+     -->
+    <div id="app">
+        <p>{{name | formartStr | formartStr2}}</p>
+    </div>
+    <script>
+        // 全局过滤器的特点是：所有的vue实例都可以使用
+        Vue.filter('formartStr',function(value){
+            // console.log(value);
+            value=value.replace(/学院/g,"大学");
+            console.log(value);
+            return value;
+        });
+        Vue.filter('formartStr2',function(value){
+            return value.replace(/大学/g,"幼儿园");
+        });
+
+        let vue = new Vue({
+            el: '#app',
+            data: {
+                name: "知播渔学院, 指趣学院, 前端学院, 区块链学院"
+            },
+            methods: {
+                
+            },
+            //这样写就是局部的了
+            directives: {
+                
+            },
+            computed: {
+                
+            }
+        });
+
+    </script>
+</body>
+
+</html>
